@@ -1,5 +1,3 @@
-import React from "react";
-
 interface IframeProps {
   files: {
     [key: string]: {

@@ -1,41 +1,38 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Editor from "@monaco-editor/react";
-import { Tabs } from "./Tabs";
-import { Iframe } from "./Iframe";
+import { Tabs } from "./components/Tabs";
+import { Iframe } from "./components/Iframe";
 import { emmetHTML } from "emmet-monaco-es";
+import Split from "react-split";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   interface files {
     [key: string]: {
       name: string;
-      value: string;
+      value: any;
       language: string;
     };
   }
+  const [html, setHtml] = useLocalStorage("html");
+  const [css, setCSS] = useLocalStorage("css");
+  const [js, setJS] = useLocalStorage("js");
 
   const [files, setFiles] = useState<files>({
     "script.js": {
       name: "script.js",
       language: "javascript",
-      value: "",
+      value: js,
     },
     "style.css": {
       name: "style.css",
       language: "css",
-      value: `body {
-  background-color: #1f1f1f;
-  color: white;
-  text-align: center;
-  font-family: "Arial";
-}
-      `,
+      value: css,
     },
     "index.html": {
       name: "index.html",
       language: "html",
-      value: /*html */ `<h1>Welcome to HTML Sandbox</h1>
-
-<img src="https://svelte.dev/tutorial/image.gif" />`,
+      value: html,
     },
   });
 
@@ -45,27 +42,30 @@ function App() {
 
   const handleChange = function (value: any, event: any) {
     if (file.name === "index.html") {
+      setHtml("html", value);
       setFiles({
         ...files,
         "index.html": {
           name: "index.html",
           language: "html",
-          value,
+          value: value,
         },
       });
     }
 
     if (file.name === "style.css") {
+      setCSS("css", value);
       setFiles({
         ...files,
         "style.css": {
           name: "style.css",
           language: "css",
-          value,
+          value: value,
         },
       });
     }
     if (file.name === "script.js") {
+      setJS("js", value);
       setFiles({
         ...files,
         "script.js": {
@@ -93,7 +93,7 @@ function App() {
             <Tabs file={file} fileName={fileName} setFileName={setFileName} />
           </div>
 
-          <div className="flex h-screen">
+          <Split className="flex h-screen">
             <div className="w-1/2 editor">
               <Editor
                 height="100vh"
@@ -111,12 +111,11 @@ function App() {
                 defaultLanguage={file.language}
                 defaultValue={file.value}
               />
-              ]{" "}
             </div>
             <div className="w-1/2 h-screen bg-white">
               <Iframe files={files} />
             </div>
-          </div>
+          </Split>
         </div>
       </div>
     </>
