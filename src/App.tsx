@@ -3,7 +3,6 @@ import Editor from "@monaco-editor/react";
 import { Tabs } from "./components/Tabs";
 import { Iframe } from "./components/Iframe";
 import { emmetHTML } from "emmet-monaco-es";
-import Split from "react-split";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
@@ -94,29 +93,27 @@ function App() {
             <Tabs file={file} fileName={fileName} setFileName={setFileName} />
           </div>
 
-          <Split className="flex h-screen">
-            <div className="w-1/2 editor">
-              <Editor
-                height="100vh"
-                theme="vs-dark"
-                onChange={handleChange}
-                onMount={handleMount}
-                options={{
-                  fontFamily: "monospace",
-                  fontSize: 18,
-                  minimap: {
-                    enabled: false,
-                  },
-                }}
-                path={file.name}
-                defaultLanguage={file.language}
-                defaultValue={file.value}
-              />
-            </div>
-            <div className="w-1/2 h-screen bg-white">
-              <Iframe files={files} />
-            </div>
-          </Split>
+          <div className="w-1/2 editor">
+            <Editor
+              height="100vh"
+              theme="vs-dark"
+              onChange={handleChange}
+              onMount={handleMount}
+              options={{
+                fontFamily: "monospace",
+                fontSize: 18,
+                minimap: {
+                  enabled: false,
+                },
+              }}
+              path={file.name}
+              defaultLanguage={file.language}
+              defaultValue={file.value}
+            />
+          </div>
+          <div className="w-1/2 h-screen bg-white">
+            <Iframe files={files} />
+          </div>
         </div>
       </div>
     </>
