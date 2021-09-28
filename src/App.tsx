@@ -14,6 +14,7 @@ function App() {
       language: string;
     };
   }
+
   const [html, setHtml] = useLocalStorage("html");
   const [css, setCSS] = useLocalStorage("css");
   const [js, setJS] = useLocalStorage("js");
@@ -101,7 +102,7 @@ function App() {
                 onChange={handleChange}
                 onMount={handleMount}
                 options={{
-                  fontFamily: "IBM plex mono",
+                  fontFamily: "monospace",
                   fontSize: 18,
                   minimap: {
                     enabled: false,

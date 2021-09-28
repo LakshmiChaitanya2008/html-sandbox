@@ -16,7 +16,7 @@ export const Tabs = ({ file, fileName, setFileName }: TabsProps) => {
       <button
         className={`${
           file.language === "html" ? "bg-red-600" : "bg-yellow-600"
-        } w-20 border-1 border-black`}
+        } w-20 border-1 border-black `}
         disabled={fileName === "index.html"}
         onClick={() => setFileName("index.html")}
       >
