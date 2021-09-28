@@ -92,27 +92,28 @@ function App() {
           <div className="tabs w-1/5 p-2 flex justify-around">
             <Tabs file={file} fileName={fileName} setFileName={setFileName} />
           </div>
-
-          <div className="w-1/2 editor">
-            <Editor
-              height="100vh"
-              theme="vs-dark"
-              onChange={handleChange}
-              onMount={handleMount}
-              options={{
-                fontFamily: "monospace",
-                fontSize: 18,
-                minimap: {
-                  enabled: false,
-                },
-              }}
-              path={file.name}
-              defaultLanguage={file.language}
-              defaultValue={file.value}
-            />
-          </div>
-          <div className="w-1/2 h-screen bg-white">
-            <Iframe files={files} />
+          <div className="flex">
+            <div className="w-1/2 editor ">
+              <Editor
+                height="100vh"
+                theme="vs-dark"
+                onChange={handleChange}
+                onMount={handleMount}
+                options={{
+                  fontFamily: "monospace",
+                  fontSize: 18,
+                  minimap: {
+                    enabled: false,
+                  },
+                }}
+                path={file.name}
+                defaultLanguage={file.language}
+                defaultValue={file.value}
+              />
+            </div>
+            <div className="w-1/2 h-screen bg-white">
+              <Iframe files={files} />
+            </div>
           </div>
         </div>
       </div>
