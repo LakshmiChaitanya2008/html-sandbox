@@ -1,10 +1,9 @@
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import { Tabs } from "./components/Tabs";
-import { Iframe } from "./components/Iframe";
+import Iframe from "./components/Iframe";
 import { emmetHTML } from "emmet-monaco-es";
 import useLocalStorage from "./hooks/useLocalStorage";
-import Split from "react-split";
 
 function App() {
   interface files {
@@ -81,7 +80,6 @@ function App() {
   const handleMount = function () {
     emmetHTML((window as any).monaco);
   };
-
   return (
     <>
       <h1 className="lg:hidden text-2xl text-center">
@@ -94,7 +92,7 @@ function App() {
           <div className="tabs w-1/5 p-2 flex justify-around">
             <Tabs file={file} fileName={fileName} setFileName={setFileName} />
           </div>
-          <Split className="flex">
+          <div className="flex">
             <div className="w-1/2 editor ">
               <Editor
                 height="100vh"
@@ -116,7 +114,7 @@ function App() {
             <div className="w-1/2 h-screen bg-white">
               <Iframe files={files} />
             </div>
-          </Split>
+          </div>
         </div>
       </div>
     </>

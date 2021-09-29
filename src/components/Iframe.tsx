@@ -7,7 +7,8 @@ interface IframeProps {
     };
   };
 }
-export const Iframe = ({ files }: IframeProps) => {
+
+const Iframe = ({ files }: IframeProps) => {
   return (
     <div>
       <iframe
@@ -31,3 +32,5 @@ export const Iframe = ({ files }: IframeProps) => {
     </div>
   );
 };
+
+export default Iframe;

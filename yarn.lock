@@ -437,10 +437,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-panelgroup@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@types/react-panelgroup/-/react-panelgroup-1.0.2.tgz"
-  integrity sha512-pQVM/sywZ/y0ioVHLIKA0iLEn7DvOrjdVXoSsj0l7oqrEcDj2DW+lSus18/HcorwQuIcQciQ3qT4/EJpKlE3EA==
+"@types/react-resizable@^1.7.3":
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/@types/react-resizable/-/react-resizable-1.7.3.tgz#a7d07f25f99f60e7967c012b427d8261908cbe5b"
+  integrity sha512-DAx+hdnHFMJHgl8geiKo3jLt1GCT838SwQixjCtbRRfqCBawAKriVLCZ1nvp7B/2Pxd94MWod8NyJEnAAmNHNA==
   dependencies:
     "@types/react" "*"
 
@@ -1254,7 +1254,7 @@ pretty-hrtime@^1.0.3:
   resolved "https://registry.npmjs.org/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
 
-prop-types@^15.5.7, prop-types@^15.7.2:
+prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -1301,14 +1301,6 @@ react-refresh@^0.10.0:
   version "0.10.0"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.10.0.tgz"
   integrity sha512-PgidR3wST3dDYKr6b4pJoqQFpPGNKDSCDx4cZoshjXipw3LzO7mG1My2pwEzz2JVkF+inx3xRpDeQLFQGH/hsQ==
-
-react-split@^2.0.13:
-  version "2.0.13"
-  resolved "https://registry.yarnpkg.com/react-split/-/react-split-2.0.13.tgz#8d55fcb17edfd6cd2fb0203ab8324c02ec39a81a"
-  integrity sha512-suq/UH4epMu2aF4NBh+imlpUvntsIvU3li9EBBLdxqNtYEg+nY7TGl8Ij65mD1qYyhs3dQhA1Pv3rLXd1s5/lQ==
-  dependencies:
-    prop-types "^15.5.7"
-    split.js "^1.6.0"
 
 react@^17.0.0:
   version "17.0.2"
@@ -1421,11 +1413,6 @@ source-map@^0.5.0:
   version "0.5.7"
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.5.7.tgz"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
-
-split.js@^1.6.0:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/split.js/-/split.js-1.6.4.tgz#13d47cba53382adef230a53294ce5dacb2a2f2e1"
-  integrity sha512-kYmQZprRJrF1IOjg/E+gdBEsKFv5kbgUE6RJVJZvrIzTOK/IHzKSqIeiJnWs7IP5D9TnpTQ2CbanuDuIWcyDUQ==
 
 state-local@^1.0.6:
   version "1.0.7"
