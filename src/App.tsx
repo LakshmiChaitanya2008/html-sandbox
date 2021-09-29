@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Editor from "@monaco-editor/react";
 import { Tabs } from "./components/Tabs";
-import Iframe from "./components/Iframe";
 import { emmetHTML } from "emmet-monaco-es";
 import useLocalStorage from "./hooks/useLocalStorage";
 
@@ -17,6 +16,8 @@ function App() {
   const [html, setHtml] = useLocalStorage("html");
   const [css, setCSS] = useLocalStorage("css");
   const [js, setJS] = useLocalStorage("js");
+
+  const iframe = useRef<HTMLIFrameElement>(null);
 
   const [files, setFiles] = useState<files>({
     "script.js": {
@@ -48,7 +49,7 @@ function App() {
         "index.html": {
           name: "index.html",
           language: "html",
-          value: value,
+          value,
         },
       });
     }
@@ -60,7 +61,7 @@ function App() {
         "style.css": {
           name: "style.css",
           language: "css",
-          value: value,
+          value,
         },
       });
     }
@@ -71,10 +72,29 @@ function App() {
         "script.js": {
           name: "script.js",
           language: "javascript",
-          value: value,
+          value,
         },
       });
     }
+
+    const html = `
+    <html>
+      <head>
+        <style>
+          ${files["style.css"].value}
+        </style>
+      </head>
+      <body>
+        ${files["index.html"].value}
+      </body>
+        <script>
+          ${files["script.js"].value}
+        </script>
+    </html>`;
+
+    const test = { type: "html", value: html };
+
+    iframe.current?.contentWindow?.postMessage(test, "*");
   };
 
   const handleMount = function () {
@@ -112,7 +132,26 @@ function App() {
               />
             </div>
             <div className="w-1/2 h-screen bg-white">
-              <Iframe files={files} />
+              <iframe
+                className="h-screen w-full"
+                sandbox="allow-scripts"
+                ref={iframe}
+                srcDoc={`<html>
+    <head>
+    <script type="module">
+      window.addEventListener('message', (event) => {
+        const { type, value } = event.data;
+
+        if (type === 'html') {
+          document.body.innerHTML = value;
+        }
+      })
+    </script>
+    </head>
+    <body>
+    </body>
+  </html>`}
+              />
             </div>
           </div>
         </div>
