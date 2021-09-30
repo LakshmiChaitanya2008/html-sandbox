@@ -66,9 +66,9 @@ const Iframe = function ({ files }: IframeProps) {
                     const textNodeEl = document.createTextNode(value);
                     scriptEl.type = 'module';
                     scriptEl.appendChild(textNodeEl);
-                    document.body.appendChild(scriptEl)
+                    document.head.appendChild(scriptEl)
                   }
-                })
+                }, false)
               </script>
               </head>
               <body>

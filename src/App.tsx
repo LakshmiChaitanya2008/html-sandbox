@@ -101,7 +101,7 @@ function App() {
                 onChange={handleChange}
                 onMount={handleMount}
                 options={{
-                  fontFamily: "monospace",
+                  fontFamily: "Consolas",
                   fontSize: 18,
                   minimap: {
                     enabled: false,
