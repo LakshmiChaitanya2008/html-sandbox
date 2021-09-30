@@ -3,6 +3,7 @@ import Editor from "@monaco-editor/react";
 import { Tabs } from "./components/Tabs";
 import { emmetHTML } from "emmet-monaco-es";
 import useLocalStorage from "./hooks/useLocalStorage";
+import Iframe from "./components/Iframe";
 
 function App() {
   interface files {
@@ -16,8 +17,6 @@ function App() {
   const [html, setHtml] = useLocalStorage("html");
   const [css, setCSS] = useLocalStorage("css");
   const [js, setJS] = useLocalStorage("js");
-
-  const iframe = useRef<HTMLIFrameElement>(null);
 
   const [files, setFiles] = useState<files>({
     "script.js": {
@@ -77,29 +76,30 @@ function App() {
       });
     }
 
-    const html = `
-    <html>
-      <head>
-        <style>
-          ${files["style.css"].value}
-        </style>
-      </head>
-      <body>
-        ${files["index.html"].value}
-      </body>
-        <script>
-          ${files["script.js"].value}
-        </script>
-    </html>`;
+    // const html = `
+    // <html>
+    //   <head>
+    //     <style>
+    //       ${files["style.css"].value}
+    //     </style>
+    //   </head>
+    //   <body>
+    //     ${files["index.html"].value}
+    //   </body>
+    //     <script>
+    //       ${files["script.js"].value}
+    //     </script>
+    // </html>`;
 
-    const test = { type: "html", value: html };
+    // const test = { type: "html", value: html };
 
-    iframe.current?.contentWindow?.postMessage(test, "*");
+    // iframe.current?.contentWindow?.postMessage(test, "*");
   };
 
   const handleMount = function () {
     emmetHTML((window as any).monaco);
   };
+
   return (
     <>
       <h1 className="lg:hidden text-2xl text-center">
@@ -132,26 +132,7 @@ function App() {
               />
             </div>
             <div className="w-1/2 h-screen bg-white">
-              <iframe
-                className="h-screen w-full"
-                sandbox="allow-scripts"
-                ref={iframe}
-                srcDoc={`<html>
-    <head>
-    <script type="module">
-      window.addEventListener('message', (event) => {
-        const { type, value } = event.data;
-
-        if (type === 'html') {
-          document.body.innerHTML = value;
-        }
-      })
-    </script>
-    </head>
-    <body>
-    </body>
-  </html>`}
-              />
+              <Iframe file={file} />
             </div>
           </div>
         </div>
