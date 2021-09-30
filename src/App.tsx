@@ -75,25 +75,6 @@ function App() {
         },
       });
     }
-
-    // const html = `
-    // <html>
-    //   <head>
-    //     <style>
-    //       ${files["style.css"].value}
-    //     </style>
-    //   </head>
-    //   <body>
-    //     ${files["index.html"].value}
-    //   </body>
-    //     <script>
-    //       ${files["script.js"].value}
-    //     </script>
-    // </html>`;
-
-    // const test = { type: "html", value: html };
-
-    // iframe.current?.contentWindow?.postMessage(test, "*");
   };
 
   const handleMount = function () {
@@ -132,7 +113,7 @@ function App() {
               />
             </div>
             <div className="w-1/2 h-screen bg-white">
-              <Iframe file={file} />
+              <Iframe files={files} />
             </div>
           </div>
         </div>

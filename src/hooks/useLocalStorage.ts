@@ -2,25 +2,7 @@ import { useState } from "react";
 
 const useLocalStorage = (key: string) => {
   const [value, setValue] = useState(() => {
-    let item;
-
-    if (key === "html") {
-      item =
-        localStorage.getItem("html") ||
-        `<h1>HTML SANDBOX!</h1>
-<img src="https://c.tenor.com/u9XnPveDa9AAAAAM/rick-rickroll.gif" />
-      `;
-    } else if (key === "css") {
-      item =
-        localStorage.getItem("css") ||
-        `body{
-  background-color: #272b33;
-  text-align:center;
-  color: #eee;
-  font-family: "Arial", sans-serif;
-}
-`;
-    } else item = localStorage.getItem("js");
+    const item = localStorage.getItem(key);
 
     return item ? item : "";
   });
